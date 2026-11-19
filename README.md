@@ -1,3 +1,4 @@
+<img width="1050" height="567" alt="Screenshot 2026-11-19 231117" src="https://github.com/user-attachments/assets/14fa7cb7-c76e-4f52-bad7-4a8a8eda7552" />
 <img width="1037" height="560" alt="Screenshot 2026-11-19 231733" src="https://github.com/user-attachments/assets/ccdcce1c-ec31-41ab-b38f-0e32ddc6d9f1" />
 # SMS Spam Detection Lab: Bayes' Theorem + Neural Network
 
