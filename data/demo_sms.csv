@@ -1,0 +1,101 @@
+label,text
+ham,"Hi Maya, are we still meeting at six near the library?"
+ham,Can you send me the document when you have a minute?
+ham,Thanks for helping me with the assignment today.
+ham,I am on my way. I should arrive at after class.
+ham,Did the lecturer share the new timetable?
+ham,Please call me when your class finishes.
+ham,"I will be a little late, but I am coming."
+ham,Are you free to study together at the main gate?
+ham,"Good morning Miki, hope you have a great day."
+ham,I received your message. Thank you so much.
+ham,"Hi Maya, are we still meeting at six near the library? Ref 11."
+ham,Can you send me the document when you have a minute? Ref 12.
+ham,Thanks for helping me with the assignment today. Ref 13.
+ham,I am on my way. I should arrive at after class. Ref 14.
+ham,Did the lecturer share the new timetable? Ref 15.
+ham,Please call me when your class finishes. Ref 16.
+ham,"I will be a little late, but I am coming. Ref 17."
+ham,Are you free to study together at the main gate? Ref 18.
+ham,"Good morning Miki, hope you have a great day. Ref 19."
+ham,I received your message. Thank you so much. Ref 20.
+ham,"Hi Maya, are we still meeting at six near the library? Ref 21."
+ham,Can you send me the document when you have a minute? Ref 22.
+ham,Thanks for helping me with the assignment today. Ref 23.
+ham,I am on my way. I should arrive at after class. Ref 24.
+ham,Did the lecturer share the new timetable? Ref 25.
+ham,Please call me when your class finishes. Ref 26.
+ham,"I will be a little late, but I am coming. Ref 27."
+ham,Are you free to study together at the main gate? Ref 28.
+ham,"Good morning Miki, hope you have a great day. Ref 29."
+ham,I received your message. Thank you so much. Ref 30.
+ham,"Hi Maya, are we still meeting at six near the library? Ref 31."
+ham,Can you send me the document when you have a minute? Ref 32.
+ham,Thanks for helping me with the assignment today. Ref 33.
+ham,I am on my way. I should arrive at after class. Ref 34.
+ham,Did the lecturer share the new timetable? Ref 35.
+ham,Please call me when your class finishes. Ref 36.
+ham,"I will be a little late, but I am coming. Ref 37."
+ham,Are you free to study together at the main gate? Ref 38.
+ham,"Good morning Miki, hope you have a great day. Ref 39."
+ham,I received your message. Thank you so much. Ref 40.
+ham,"Hi Maya, are we still meeting at six near the library? Ref 41."
+ham,Can you send me the document when you have a minute? Ref 42.
+ham,Thanks for helping me with the assignment today. Ref 43.
+ham,I am on my way. I should arrive at after class. Ref 44.
+ham,Did the lecturer share the new timetable? Ref 45.
+ham,Please call me when your class finishes. Ref 46.
+ham,"I will be a little late, but I am coming. Ref 47."
+ham,Are you free to study together at the main gate? Ref 48.
+ham,"Good morning Miki, hope you have a great day. Ref 49."
+ham,I received your message. Thank you so much. Ref 50.
+spam,Congratulations! You won a free gift card. Call now to claim your reward.
+spam,URGENT: claim your 50 cash prize today. Reply WIN to 99220.
+spam,You have been selected for a free a shopping voucher. Click the link to collect it.
+spam,Limited offer! Get a a new phone now. Text YES to 77111 to subscribe.
+spam,Your mobile number won 2500. Call our prize line immediately.
+spam,Final notice: your reward is waiting. Reply CLAIM to 44321 now.
+spam,Win big today! Send your details to claim a guaranteed cash bonus.
+spam,Free entry available now. Text STOP to cancel the premium service.
+spam,Exclusive winner alert: collect a new phone before the offer expires.
+spam,You are our lucky customer. Claim 2500 by calling this number now.
+spam,Congratulations! You won a free gift card. Call now to claim your reward. Ref 61.
+spam,URGENT: claim your 50 cash prize today. Reply WIN to 99220. Ref 62.
+spam,You have been selected for a free a shopping voucher. Click the link to collect it. Ref 63.
+spam,Limited offer! Get a a new phone now. Text YES to 77111 to subscribe. Ref 64.
+spam,Your mobile number won 2500. Call our prize line immediately. Ref 65.
+spam,Final notice: your reward is waiting. Reply CLAIM to 44321 now. Ref 66.
+spam,Win big today! Send your details to claim a guaranteed cash bonus. Ref 67.
+spam,Free entry available now. Text STOP to cancel the premium service. Ref 68.
+spam,Exclusive winner alert: collect a new phone before the offer expires. Ref 69.
+spam,You are our lucky customer. Claim 2500 by calling this number now. Ref 70.
+spam,Congratulations! You won a free gift card. Call now to claim your reward. Ref 71.
+spam,URGENT: claim your 50 cash prize today. Reply WIN to 99220. Ref 72.
+spam,You have been selected for a free a shopping voucher. Click the link to collect it. Ref 73.
+spam,Limited offer! Get a a new phone now. Text YES to 77111 to subscribe. Ref 74.
+spam,Your mobile number won 2500. Call our prize line immediately. Ref 75.
+spam,Final notice: your reward is waiting. Reply CLAIM to 44321 now. Ref 76.
+spam,Win big today! Send your details to claim a guaranteed cash bonus. Ref 77.
+spam,Free entry available now. Text STOP to cancel the premium service. Ref 78.
+spam,Exclusive winner alert: collect a new phone before the offer expires. Ref 79.
+spam,You are our lucky customer. Claim 2500 by calling this number now. Ref 80.
+spam,Congratulations! You won a free gift card. Call now to claim your reward. Ref 81.
+spam,URGENT: claim your 50 cash prize today. Reply WIN to 99220. Ref 82.
+spam,You have been selected for a free a shopping voucher. Click the link to collect it. Ref 83.
+spam,Limited offer! Get a a new phone now. Text YES to 77111 to subscribe. Ref 84.
+spam,Your mobile number won 2500. Call our prize line immediately. Ref 85.
+spam,Final notice: your reward is waiting. Reply CLAIM to 44321 now. Ref 86.
+spam,Win big today! Send your details to claim a guaranteed cash bonus. Ref 87.
+spam,Free entry available now. Text STOP to cancel the premium service. Ref 88.
+spam,Exclusive winner alert: collect a new phone before the offer expires. Ref 89.
+spam,You are our lucky customer. Claim 2500 by calling this number now. Ref 90.
+spam,Congratulations! You won a free gift card. Call now to claim your reward. Ref 91.
+spam,URGENT: claim your 50 cash prize today. Reply WIN to 99220. Ref 92.
+spam,You have been selected for a free a shopping voucher. Click the link to collect it. Ref 93.
+spam,Limited offer! Get a a new phone now. Text YES to 77111 to subscribe. Ref 94.
+spam,Your mobile number won 2500. Call our prize line immediately. Ref 95.
+spam,Final notice: your reward is waiting. Reply CLAIM to 44321 now. Ref 96.
+spam,Win big today! Send your details to claim a guaranteed cash bonus. Ref 97.
+spam,Free entry available now. Text STOP to cancel the premium service. Ref 98.
+spam,Exclusive winner alert: collect a new phone before the offer expires. Ref 99.
+spam,You are our lucky customer. Claim 2500 by calling this number now. Ref 100.

@@ -1,0 +1,38 @@
+{
+  "dataset_source": "UCI SMS Spam Collection (downloaded)",
+  "dataset_rows_after_deduplication": 5160,
+  "class_counts": {
+    "ham": 4518,
+    "spam": 642
+  },
+  "split_counts": {
+    "train": 3612,
+    "validation": 774,
+    "test": 774
+  },
+  "random_seed": 42,
+  "test_metrics": {
+    "Multinomial Naive Bayes": {
+      "accuracy": 0.9819121447028424,
+      "balanced_accuracy": 0.9404959439528023,
+      "precision": 0.9659090909090909,
+      "recall": 0.8854166666666666,
+      "f1": 0.9239130434782609,
+      "roc_auc": 0.9625122910521142,
+      "average_precision": 0.9409621244349001,
+      "threshold": 0.5
+    },
+    "Neural Network (PyTorch MLP)": {
+      "accuracy": 0.9689922480620154,
+      "balanced_accuracy": 0.9375921828908556,
+      "precision": 0.86,
+      "recall": 0.8958333333333334,
+      "f1": 0.8775510204081632,
+      "roc_auc": 0.9830998033431663,
+      "average_precision": 0.9495195385197128,
+      "threshold": 0.5
+    }
+  },
+  "neural_network_epochs_completed": 10,
+  "note": "Synthetic-demo metrics are for pipeline smoke testing only, not a trustworthy benchmark."
+}

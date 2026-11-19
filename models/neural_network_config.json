@@ -1,0 +1,6 @@
+{
+  "input_dim": 4000,
+  "threshold": 0.5,
+  "architecture": "TF-IDF -> Dense(128, ReLU) -> Dropout(0.35) -> Dense(64, ReLU) -> Dropout(0.25) -> Dense(1)",
+  "device_used_for_training": "cpu"
+}
