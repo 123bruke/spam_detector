@@ -5,7 +5,7 @@ A complete educational Python project that classifies a text message as **spam**
 1. **Multinomial Naive Bayes** — applies Bayes' theorem to class priors and word/phrase likelihoods. It also exposes token-level evidence that pushes a prediction toward spam or ham.
 2. **Neural Network (PyTorch MLP)** — learns patterns from TF-IDF text vectors using a trainable feed-forward neural network.
 
-The project evaluates both models on a held-out test split and produces visualizations using **Seaborn and Matplotlib**. A Streamlit dashboard lets you test your own messages interactively.
+The project evaluates both models on a held-out test split and produces visualizations using **Seaborn and Matplotlib**. A React dashboard lets you test your own messages interactively. The original Streamlit dashboard is also available.
 
 > **Dataset note:** The project attempts to download the official UCI SMS Spam Collection automatically. The dataset has 5,574 messages and is licensed CC BY 4.0. If the download is unavailable, the project falls back to a small, synthetic, balanced demo dataset so that you can test the code offline. Demo metrics are only a pipeline smoke test and must not be presented as benchmark results.
 
@@ -19,13 +19,17 @@ The project evaluates both models on a held-out test split and produces visualiz
 - Early stopping using validation loss.
 - Accuracy, precision, recall, F1, ROC-AUC, average precision, confusion matrices, and ROC curves.
 - Seaborn/Matplotlib visualizations: class balance, model comparison, confusion matrices, ROC, training curves, and Bayes token evidence.
-- Interactive Streamlit prediction dashboard with adjustable spam threshold.
+- Interactive React prediction dashboard with adjustable spam threshold, token evidence, and model metrics.
+- FastAPI backend for predictions from the trained models.
+- Original Streamlit prediction dashboard remains available.
 
 ## Project structure
 
 ```text
 sms-spam-detection/
+├── api.py                         # FastAPI backend and built React app server
 ├── app.py                         # Streamlit interface
+├── frontend/                      # React + Vite dashboard
 ├── requirements.txt
 ├── pyproject.toml
 ├── data/
@@ -85,7 +89,37 @@ python train.py --epochs 45
 
 Early stopping may finish before the maximum epoch count.
 
-## 3. Launch the interactive dashboard
+## 3. Launch the React dashboard
+
+In one PowerShell terminal, start the prediction API:
+
+```powershell
+uvicorn api:app --reload
+```
+
+In a second terminal, install the React dependencies and start the frontend:
+
+```powershell
+cd frontend
+npm install
+npm run dev
+```
+
+Open the local URL printed by Vite (usually `http://localhost:5173`). The dashboard calls the API at `http://127.0.0.1:8000`.
+
+To serve the built React dashboard and API from one local server instead:
+
+```powershell
+cd frontend
+npm install
+npm run build
+cd ..
+uvicorn api:app
+```
+
+Then open `http://127.0.0.1:8000`.
+
+## 4. Launch the original Streamlit dashboard
 
 After training succeeds:
 
@@ -93,9 +127,9 @@ After training succeeds:
 streamlit run app.py
 ```
 
-The dashboard lets you paste a message, select either classifier, change the decision threshold, view the predicted spam score, and inspect the Bayes token contributions. It also displays test metrics and plots saved by the training script.
+The Streamlit dashboard lets you paste a message, select either classifier, change the decision threshold, view the predicted spam score, and inspect the Bayes token contributions. It also displays test metrics and plots saved by the training script.
 
-## 4. Understanding the calculations
+## 5. Understanding the calculations
 
 ### Bayes' theorem
 
@@ -141,7 +175,7 @@ See [`docs/MATHS_AND_ALGORITHM.md`](docs/MATHS_AND_ALGORITHM.md) for a numerical
 
 The neural network receives a TF-IDF vector. It learns weights using backpropagation and binary cross-entropy loss. The final sigmoid output is a **spam score**. Since the training loss uses a positive-class weight to account for class imbalance, the score should not automatically be interpreted as a perfectly calibrated real-world probability.
 
-## 5. How to interpret evaluation metrics
+## 6. How to interpret evaluation metrics
 
 - **Accuracy:** fraction of all test messages classified correctly.
 - **Precision:** among messages predicted as spam, the fraction that really are spam.
