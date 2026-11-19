@@ -1,3 +1,4 @@
+<img width="1037" height="560" alt="Screenshot 2026-11-19 231733" src="https://github.com/user-attachments/assets/ccdcce1c-ec31-41ab-b38f-0e32ddc6d9f1" />
 # SMS Spam Detection Lab: Bayes' Theorem + Neural Network
 
 A complete educational Python project that classifies a text message as **spam** or **ham** (legitimate). It trains and compares two models:
