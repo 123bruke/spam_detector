@@ -13,6 +13,8 @@ The project evaluates both models on a held-out test split and produces visualiz
 
 ## Features
 
+
+
 - Real-data loader for the UCI SMS Spam Collection, with offline demo fallback.
 - Stratified train / validation / test split (approximately 70% / 15% / 15%).
 - Bayes' theorem implemented with Multinomial Naive Bayes and Laplace smoothing.
