@@ -1,62 +1,104 @@
-<img width="1050" height="567" alt="Screenshot 2026-11-19 231117" src="https://github.com/user-attachments/assets/14fa7cb7-c76e-4f52-bad7-4a8a8eda7552" />
-<img width="1037" height="560" alt="Screenshot 2026-11-19 231733" src="https://github.com/user-attachments/assets/ccdcce1c-ec31-41ab-b38f-0e32ddc6d9f1" />
-# SMS Spam Detection Lab: Bayes' Theorem + Neural Network
+<p align="center">
+  <img width="1050" alt="SMS spam detection dashboard" src="https://github.com/user-attachments/assets/14fa7cb7-c76e-4f52-bad7-4a8a8eda7552" />
+</p>
 
-A complete educational Python project that classifies a text message as **spam** or **ham** (legitimate). It trains and compares two models:
+# SMS Spam Detection Lab
 
-1. **Multinomial Naive Bayes** — applies Bayes' theorem to class priors and word/phrase likelihoods. It also exposes token-level evidence that pushes a prediction toward spam or ham.
-2. **Neural Network (PyTorch MLP)** — learns patterns from TF-IDF text vectors using a trainable feed-forward neural network.
+A complete educational project for detecting spam SMS messages using two different machine-learning approaches:
 
-The project evaluates both models on a held-out test split and produces visualizations using **Seaborn and Matplotlib**. A React dashboard lets you test your own messages interactively. The original Streamlit dashboard is also available.
+- **Multinomial Naive Bayes** — uses Bayes' theorem, token probabilities, and per-word evidence.
+- **PyTorch neural network** — learns patterns from TF-IDF text vectors.
 
-> **Dataset note:** The project attempts to download the official UCI SMS Spam Collection automatically. The dataset has 5,574 messages and is licensed CC BY 4.0. If the download is unavailable, the project falls back to a small, synthetic, balanced demo dataset so that you can test the code offline. Demo metrics are only a pipeline smoke test and must not be presented as benchmark results.
+Both models classify a message as **spam** or **ham** (legitimate). The project includes model training, evaluation, visualizations, an interactive React dashboard, a FastAPI API, and an original Streamlit interface.
+
+## Table of Contents
+
+- [Screenshots](#screenshots)
+- [Features](#features)
+- [How It Works](#how-it-works)
+- [Project Structure](#project-structure)
+- [Installation](#installation)
+- [Train the Models](#train-the-models)
+- [Run the React Dashboard](#run-the-react-dashboard)
+- [Run the Streamlit Dashboard](#run-the-streamlit-dashboard)
+- [Evaluation Metrics](#evaluation-metrics)
+- [Dataset](#dataset)
+- [Limitations](#limitations)
+
+## Screenshots
+
+<p align="center">
+  <img width="1050" alt="SMS spam detection dashboard" src="https://github.com/user-attachments/assets/14fa7cb7-c76e-4f52-bad7-4a8a8eda7552" />
+</p>
+
+<p align="center">
+  <img width="1037" alt="Spam detection results" src="https://github.com/user-attachments/assets/ccdcce1c-ec31-41ab-b38f-0e32ddc6d9f1" />
+</p>
 
 ## Features
 
+- Downloads and loads the UCI SMS Spam Collection automatically.
+- Falls back to a small synthetic dataset for offline training.
+- Splits data into 70% training, 15% validation, and 15% testing using a stratified split.
+- Implements Multinomial Naive Bayes with Laplace smoothing.
+- Provides token-level explanations showing which words influence each prediction.
+- Trains a PyTorch MLP: TF-IDF → 128 neurons → 64 neurons → sigmoid output.
+- Stops neural-network training early when validation loss stops improving.
+- Calculates accuracy, precision, recall, F1, ROC-AUC, average precision, and confusion matrices.
+- Creates visualizations for class balance, model comparison, ROC curves, training history, and token evidence.
+- Provides an adjustable spam threshold in the React dashboard.
+- Offers predictions through FastAPI.
 
+## How It Works
 
-- Real-data loader for the UCI SMS Spam Collection, with offline demo fallback.
-- Stratified train / validation / test split (approximately 70% / 15% / 15%).
-- Bayes' theorem implemented with Multinomial Naive Bayes and Laplace smoothing.
-- Manual log-posterior calculation and per-token spam-vs-ham log-odds explanation.
-- Trainable PyTorch neural network: TF-IDF → Dense(128) → Dense(64) → output sigmoid.
-- Early stopping using validation loss.
-- Accuracy, precision, recall, F1, ROC-AUC, average precision, confusion matrices, and ROC curves.
-- Seaborn/Matplotlib visualizations: class balance, model comparison, confusion matrices, ROC, training curves, and Bayes token evidence.
-- Interactive React prediction dashboard with adjustable spam threshold, token evidence, and model metrics.
-- FastAPI backend for predictions from the trained models.
-- Original Streamlit prediction dashboard remains available.
+### 1. Text preprocessing and TF-IDF
 
-## Project structure
+Messages are converted into numerical features. Naive Bayes uses word and phrase frequencies, while the neural network receives TF-IDF vectors.
+
+### 2. Model training
+
+The training script trains both classifiers on the training split. The validation split is used for neural-network early stopping and model tuning.
+
+### 3. Evaluation
+
+The held-out test split measures how accurately each model identifies spam and ham messages.
+
+### 4. Prediction
+
+A prediction API and two dashboards accept text entered by the user and return a classification score.
+
+## Project Structure
 
 ```text
 sms-spam-detection/
-├── api.py                         # FastAPI backend and built React app server
-├── app.py                         # Streamlit interface
+├── api.py                         # FastAPI prediction API and built dashboard server
+├── app.py                         # Original Streamlit dashboard
 ├── frontend/                      # React + Vite dashboard
-├── requirements.txt
-├── pyproject.toml
+├── requirements.txt               # Python dependencies
+├── pyproject.toml                 # Python project configuration
 ├── data/
-│   └── demo_sms.csv               # Small synthetic offline smoke-test dataset
+│   └── demo_sms.csv               # Synthetic fallback dataset
 ├── docs/
-│   └── MATHS_AND_ALGORITHM.md     # Theory and worked Bayes calculation
-├── models/                        # Trained model artifacts (created by training)
+│   └── MATHS_AND_ALGORITHM.md     # Theory and numerical Bayes example
+├── models/                        # Saved trained model artifacts
 ├── outputs/
-│   ├── metrics.json               # Test metrics and dataset source
-│   ├── test_predictions.csv       # Held-out predictions
-│   ├── training_history.csv       # Neural-network epoch history
-│   └── plots/                     # Seaborn/Matplotlib figures
+│   ├── metrics.json               # Test metrics and dataset information
+│   ├── test_predictions.csv       # Predictions for the test split
+│   ├── training_history.csv       # Neural-network training history
+│   └── plots/                     # Generated visualizations
 └── src/spamdetector/
-    ├── bayes.py                   # Bayes / MultinomialNB implementation
-    ├── data.py                    # Dataset download and loading
-    ├── models.py                  # PyTorch MLP architecture
-    ├── train.py                   # End-to-end training/evaluation
-    └── visualize.py               # Visualization functions
+    ├── bayes.py                   # Naive Bayes implementation
+    ├── data.py                    # Dataset loading and download
+    ├── models.py                  # PyTorch neural-network architecture
+    ├── train.py                   # Training and evaluation pipeline
+    └── visualize.py               # Plot generation
 ```
 
-## 1. Installation (Windows 11 / PowerShell)
+## Installation
 
-Open PowerShell inside the project folder:
+### Windows 11 / PowerShell
+
+Open PowerShell in the project folder, then run:
 
 ```powershell
 py -3.11 -m venv .venv
@@ -65,43 +107,51 @@ python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-If PowerShell blocks activation for this terminal, you can use the environment's Python directly:
+If script activation is blocked, use the virtual-environment Python directly:
 
 ```powershell
 .venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
 
-## 2. Train both models
+## Train the Models
+
+From the project folder, run:
 
 ```powershell
 python train.py
 ```
 
-The data loader first checks for `data/SMSSpamCollection`. If it is not present, it tries to download the UCI ZIP. If the download fails, it trains on `data/demo_sms.csv` and prints a warning.
+The loader checks `data/SMSSpamCollection` first. If that file is absent, it attempts to download the UCI ZIP. If the download fails, it trains with `data/demo_sms.csv` and prints a fallback warning.
 
-To explicitly run the small offline demo:
+### Offline demo
 
 ```powershell
 python train.py --demo
 ```
 
-To change the maximum number of neural-network epochs:
+### Change neural-network epochs
 
 ```powershell
 python train.py --epochs 45
 ```
 
-Early stopping may finish before the maximum epoch count.
+Early stopping may finish training before the maximum number of epochs is reached.
 
-## 3. Launch the React dashboard
+## Run the React Dashboard
 
-In one PowerShell terminal, start the prediction API:
+### Step 1: Start the API
+
+Open a terminal and run:
 
 ```powershell
 uvicorn api:app --reload
 ```
 
-In a second terminal, install the React dependencies and start the frontend:
+The API is available at `http://127.0.0.1:8000`.
+
+### Step 2: Start the frontend
+
+Open a second terminal:
 
 ```powershell
 cd frontend
@@ -109,9 +159,9 @@ npm install
 npm run dev
 ```
 
-Open the local URL printed by Vite (usually `http://localhost:5173`). The dashboard calls the API at `http://127.0.0.1:8000`.
+Open the URL shown by Vite, usually `http://localhost:5173`.
 
-To serve the built React dashboard and API from one local server instead:
+### Serve the dashboard and API together
 
 ```powershell
 cd frontend
@@ -123,81 +173,72 @@ uvicorn api:app
 
 Then open `http://127.0.0.1:8000`.
 
-## 4. Launch the original Streamlit dashboard
+## Run the Streamlit Dashboard
 
-After training succeeds:
+After training is complete:
 
 ```powershell
 streamlit run app.py
 ```
 
-The Streamlit dashboard lets you paste a message, select either classifier, change the decision threshold, view the predicted spam score, and inspect the Bayes token contributions. It also displays test metrics and plots saved by the training script.
+The Streamlit app allows you to:
 
-## 5. Understanding the calculations
+- Enter or paste an SMS message.
+- Select Naive Bayes or the neural network.
+- Adjust the decision threshold.
+- View the predicted spam score.
+- Inspect Bayes token contributions.
+- View test metrics and saved plots.
 
-### Bayes' theorem
+## Evaluation Metrics
 
-For a message `M` and class `S = spam`:
+- **Accuracy** — Percentage of test messages classified correctly.
+- **Precision** — Percentage of messages predicted as spam that are actually spam.
+- **Recall** — Percentage of actual spam messages detected by the model.
+- **F1 score** — Balance between precision and recall.
+- **ROC-AUC** — Ability to rank spam above ham across all thresholds.
+- **Average precision** — Summary of precision across recall levels.
+- **Confusion matrix** — Correct and incorrect predictions grouped by actual and predicted class.
 
-\[
-P(S\mid M)=\frac{P(M\mid S)P(S)}{P(M)}
-\]
+A high accuracy score can hide poor spam detection when spam is uncommon. Compare precision, recall, F1, ROC-AUC, and the confusion matrix together.
 
-With two classes:
+## Bayes Calculation
+
+For a message `M` and spam class `S`:
 
 \[
 P(S\mid M)=\frac{P(M\mid S)P(S)}{P(M\mid S)P(S)+P(M\mid H)P(H)}
 \]
 
-where `H` means ham. Multinomial Naive Bayes models a message as a set of token counts and uses the conditional-independence approximation:
+Multinomial Naive Bayes treats the message as a set of token counts:
 
 \[
 P(M\mid S)\approx\prod_{i=1}^{V}P(w_i\mid S)^{n_i}
 \]
 
-`n_i` is the count of token `w_i` in the message. Laplace smoothing prevents unseen tokens from receiving zero probability:
+Laplace smoothing prevents unseen tokens from receiving a zero probability:
 
 \[
-P(w_i\mid S)=\frac{count(w_i,S)+\alpha}{N_S+\alpha V}
+P(w_i\mid S)=\frac{\text{count}(w_i,S)+\alpha}{N_S+\alpha V}
 \]
 
-The implementation works in log space to avoid multiplying many tiny probabilities:
+The implementation performs these calculations in log space. See [`docs/MATHS_AND_ALGORITHM.md`](docs/MATHS_AND_ALGORITHM.md) for a worked numerical example.
 
-\[
-Score(S)=\log P(S)+\sum_i n_i\log P(w_i\mid S)
-\]
+## Dataset
 
-The posterior is obtained by normalizing the class scores:
+The project attempts to use the UCI SMS Spam Collection:
 
-\[
-P(S\mid M)=\frac{e^{Score(S)}}{e^{Score(S)}+e^{Score(H)}}
-\]
+Almeida, T. & Hidalgo, J. (2011). *SMS Spam Collection* [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5CC84
 
-See [`docs/MATHS_AND_ALGORITHM.md`](docs/MATHS_AND_ALGORITHM.md) for a numerical worked example.
+The dataset contains 5,574 English SMS messages and is licensed under **Creative Commons Attribution 4.0 International (CC BY 4.0)**.
 
-### Neural network
+Demo-mode metrics are generated from a synthetic dataset. They validate the pipeline but should not be presented as real benchmark results.
 
-The neural network receives a TF-IDF vector. It learns weights using backpropagation and binary cross-entropy loss. The final sigmoid output is a **spam score**. Since the training loss uses a positive-class weight to account for class imbalance, the score should not automatically be interpreted as a perfectly calibrated real-world probability.
+## Limitations
 
-## 6. How to interpret evaluation metrics
-
-- **Accuracy:** fraction of all test messages classified correctly.
-- **Precision:** among messages predicted as spam, the fraction that really are spam.
-- **Recall:** among actual spam messages, the fraction detected by the model.
-- **F1:** harmonic mean of precision and recall.
-- **ROC-AUC:** ranking ability across possible thresholds; 1 is ideal and 0.5 is random ranking.
-- **Confusion matrix:** true ham, false spam, missed spam, and correctly detected spam counts.
-
-A low spam prevalence can make accuracy look high even when spam recall is poor. Examine precision, recall, F1 and the confusion matrix together.
-
-## Dataset attribution
-
-Almeida, T. & Hidalgo, J. (2011). *SMS Spam Collection* [Dataset]. UCI Machine Learning Repository. https://doi.org/10.24432/C5CC84. Dataset license: Creative Commons Attribution 4.0 International (CC BY 4.0).
-
-## Limitations and responsible use
-
-- The UCI collection contains English SMS messages. Its patterns may not generalize to other languages, countries, or modern messaging platforms.
-- The dataset is historical; spam tactics change. Retrain and evaluate on recent, representative, consented data before real deployment.
-- The Naive Bayes model assumes token conditional independence, which is a simplifying assumption.
-- The neural network's output score may require probability calibration before production use.
-- A prediction is not proof that a message is malicious. Keep human review and a way to recover incorrectly flagged messages.
+- The dataset is historical and may not represent modern spam messages.
+- It mainly contains English SMS text, so language and regional patterns may not generalize.
+- Naive Bayes assumes that tokens are conditionally independent.
+- Neural-network output scores may need calibration before production use.
+- Retrain and evaluate on recent, representative, and properly licensed data before deployment.
+- A prediction is a model estimate, not proof that a message is malicious. Keep human review and an appeal or recovery process.
